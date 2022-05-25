@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Controllers">
+      <UniqueIdentifier>{319d47d8-c3e6-4457-abda-323789746b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Services">
+      <UniqueIdentifier>{7c27fba4-45c1-4158-b4a4-2f51e529dabe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Repositories">
+      <UniqueIdentifier>{820577fd-50e5-4e23-aa32-877db711ecad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Controllers">
+      <UniqueIdentifier>{dff24362-3703-4965-8b97-42b9db0d379b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Services">
+      <UniqueIdentifier>{ea5e4890-d426-4ac3-b12a-997e6064d9ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Repositories">
+      <UniqueIdentifier>{e80d411c-e001-4318-897e-b1d19fa4c0d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Models">
+      <UniqueIdentifier>{8e219164-120d-40fd-aad5-3bc7eb2b090f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Models">
+      <UniqueIdentifier>{c6c1e73a-3b1a-450f-9af4-292b6d37cebb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicController.cpp">
+      <Filter>Pliki źródłowe\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphController.cpp">
+      <Filter>Pliki źródłowe\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Pliki źródłowe\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphRepository.cpp">
+      <Filter>Pliki źródłowe\Repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphService.cpp">
+      <Filter>Pliki źródłowe\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="BFSService.cpp">
+      <Filter>Pliki źródłowe\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="BFSResult.cpp">
+      <Filter>Pliki źródłowe\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="EdmondsKarpService.cpp">
+      <Filter>Pliki źródłowe\Services</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BasicController.h">
+      <Filter>Pliki nagłówkowe\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphController.h">
+      <Filter>Pliki nagłówkowe\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Pliki nagłówkowe\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="BFSResult.h">
+      <Filter>Pliki nagłówkowe\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphService.h">
+      <Filter>Pliki nagłówkowe\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphRepository.h">
+      <Filter>Pliki nagłówkowe\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="BFSService.h">
+      <Filter>Pliki nagłówkowe\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="EdmondsKarpService.h">
+      <Filter>Pliki nagłówkowe\Services</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
