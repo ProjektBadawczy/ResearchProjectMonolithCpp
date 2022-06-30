@@ -16,6 +16,9 @@ int main()
 	GraphController serv("127.0.0.1", "8080", graphService, edmondsKarpService);
 	serv.setEndpoint("/api");
 	serv.accept().wait();
-	system("pause");
+	while(true)
+	{
+		
+	}
 	return 0;
 }

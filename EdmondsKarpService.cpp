@@ -1,5 +1,6 @@
 #include "EdmondsKarpService.h"
 #include <stdexcept>
+#include <climits>
 
 
 EdmondsKarpService::EdmondsKarpService(BFSService* bfsService)
