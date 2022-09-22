@@ -37,6 +37,12 @@
     <Filter Include="Pliki źródłowe\Models">
       <UniqueIdentifier>{c6c1e73a-3b1a-450f-9af4-292b6d37cebb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Handlers">
+      <UniqueIdentifier>{87073ee3-6755-44bb-b694-acd9c346ae26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Handlers">
+      <UniqueIdentifier>{700e09fc-7bb4-495d-9615-53445cb4f2f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,6 +72,9 @@
     <ClCompile Include="EdmondsKarpService.cpp">
       <Filter>Pliki źródłowe\Services</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardInterruptHandler.cpp">
+      <Filter>Pliki źródłowe\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicController.h">
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="EdmondsKarpService.h">
       <Filter>Pliki nagłówkowe\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInterruptHandler.h">
+      <Filter>Pliki nagłówkowe\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
