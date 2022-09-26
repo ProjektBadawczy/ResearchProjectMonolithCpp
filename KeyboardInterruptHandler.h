@@ -10,7 +10,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #endif
-#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 class KeyboardInterruptHandler {
 public:

@@ -12,10 +12,10 @@ BOOL WINAPI KeyboardInterruptHandler::CtrlHandler(DWORD fdwCtrlType)
 {
     if (fdwCtrlType == CTRL_C_EVENT)
     {
-        printf("Ctrl-C event\n\n");
+        cout << endl << "Ctrl-C event" << endl;
         if (!SetEvent(ghSignalEvent))
         {
-            printf("SetEvent failed (%d)\n", GetLastError());
+            cout << endl << "SetEvent failed (" << GetLastError() << ")" << endl;
             return FALSE;
         }
         return TRUE;
@@ -26,16 +26,17 @@ BOOL WINAPI KeyboardInterruptHandler::CtrlHandler(DWORD fdwCtrlType)
 #ifdef linux
 void KeyboardInterruptHandler::CtrlHandler(int s)
 {
-    printf("Ctrl-C event\n\n");
+    cout << endl << "Ctrl-C event" << endl;
 }
 #endif
 
 int KeyboardInterruptHandler::handleKeyboardInterrupt()
 {
+    cout << endl << "app started" << endl;
 #ifdef _WIN32
     if (!SetConsoleCtrlHandler(CtrlHandler, TRUE))
     {
-        printf("\nERROR: Could not set control handler\n");
+        cout << endl << "ERROR: Could not set control handler" << endl;
         return 1;
     }
 
@@ -47,10 +48,10 @@ int KeyboardInterruptHandler::handleKeyboardInterrupt()
     {
         // Event object was signaled
     case WAIT_OBJECT_0:
-        printf("Exit\n");
+        cout << endl << "Exit" << endl;
         break;
     default:
-        printf("Wait error (%d)\n", GetLastError());
+        cout << endl << "Wait error" << endl;
         return 0;
     }
 #endif
