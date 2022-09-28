@@ -147,6 +147,7 @@
     <ClCompile Include="GraphController.cpp" />
     <ClCompile Include="GraphRepository.cpp" />
     <ClCompile Include="GraphService.cpp" />
+    <ClCompile Include="KeyboardInterruptHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="GraphController.h" />
     <ClInclude Include="GraphRepository.h" />
     <ClInclude Include="GraphService.h" />
+    <ClInclude Include="KeyboardInterruptHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
