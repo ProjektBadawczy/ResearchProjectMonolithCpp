@@ -75,6 +75,9 @@
     <ClCompile Include="KeyboardInterruptHandler.cpp">
       <Filter>Pliki źródłowe\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="PushRelabelService.cpp">
+      <Filter>Pliki źródłowe\Services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicController.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="KeyboardInterruptHandler.h">
       <Filter>Pliki nagłówkowe\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="PushRelabelService.h">
+      <Filter>Pliki nagłówkowe\Services</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

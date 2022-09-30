@@ -2,15 +2,17 @@
 #include <string>
 using std::string;
 
-GraphController::GraphController(const string& address, const string& port, GraphService* graphService, EdmondsKarpService* edmondsKarpService) : BasicController(address, port)
+GraphController::GraphController(const string& address, const string& port, GraphService* graphService, EdmondsKarpService* edmondsKarpService, PushRelabelService* pushRelabelService) : BasicController(address, port)
 {
     this->graphService = graphService;
     this->edmondsKarpService = edmondsKarpService;
+    this->pushRelabelService = pushRelabelService;
 }
 GraphController::~GraphController()
 {
     delete graphService;
     delete edmondsKarpService;
+    delete pushRelabelService;
 }
 
 void GraphController::initRestOpHandlers() 
@@ -43,6 +45,18 @@ void GraphController::handleGet(http_request message)
             int destination = stoi(path[3]);
             auto graph = graphService->getGraph(id);
             auto result = edmondsKarpService->calculateMaxFlow(graph, source, destination);
+            json::value resultJson;
+            resultJson[to_string_t("result")] = json::value::number(result);
+            message.reply(status_codes::OK, resultJson);
+            delete graph;
+        }
+        else if (path[0] == to_string_t("push-relabel"))
+        {
+            int id = stoi(path[1]);
+            int source = stoi(path[2]);
+            int destination = stoi(path[3]);
+            auto graph = graphService->getGraph(id);
+            auto result = pushRelabelService->calculateMaxFlow(graph, source, destination);
             json::value resultJson;
             resultJson[to_string_t("result")] = json::value::number(result);
             message.reply(status_codes::OK, resultJson);

@@ -149,6 +149,7 @@
     <ClCompile Include="GraphService.cpp" />
     <ClCompile Include="KeyboardInterruptHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PushRelabelService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicController.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="GraphRepository.h" />
     <ClInclude Include="GraphService.h" />
     <ClInclude Include="KeyboardInterruptHandler.h" />
+    <ClInclude Include="PushRelabelService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
