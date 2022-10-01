@@ -13,7 +13,8 @@ PushRelabelService::~PushRelabelService()
 int PushRelabelService::calculateMaxFlow(Graph* graph, int source, int destination)
 {
 	Graph* residualGraph = graph->clone();
-	vector<int> queue;
+	//queue<int> queue;
+	auto myQueue = new queue<int>;
 	int* e = new int[graph->getNumberOfVertices()] ();
 	int* h = new int[graph->getNumberOfVertices()] ();
 	bool* inQueue = new bool[graph->getNumberOfVertices()] ();
@@ -31,18 +32,18 @@ int PushRelabelService::calculateMaxFlow(Graph* graph, int source, int destinati
 		e[i] = graph->getAdjacencyMatrix()[source][i];
 		if (i != destination)
 		{
-			queue.push_back(i);
+			myQueue->push(i);
 			inQueue[i] = true;
 		}
 	}
 
-	while (!queue.empty())
+	while (!myQueue->empty())
 	{
-		int u = queue[0];
-		queue.erase(queue.begin());
+		int u = myQueue->front();
+		myQueue->pop();
 		inQueue[u] = false;
 		relabel(u, h, residualGraph);
-		push(u, e, h, queue, inQueue, residualGraph, source, destination);
+		push(u, e, h, myQueue, inQueue, residualGraph, source, destination);
 	}
 
 	int result = e[destination];
@@ -50,6 +51,7 @@ int PushRelabelService::calculateMaxFlow(Graph* graph, int source, int destinati
 	delete[] inQueue;
 	delete[] h;
 	delete[] e;
+	delete myQueue;
 	delete residualGraph;
 	
 	return result;
@@ -72,7 +74,7 @@ void PushRelabelService::relabel(int u, int* h, Graph* residualGraph)
 	}
 }
 
-void PushRelabelService::push(int u, int* e, int* h, vector<int>& queue, bool* inQueue, Graph* residualGraph, int source, int destination)
+void PushRelabelService::push(int u, int* e, int* h, queue<int>* queueGiven, bool* inQueue, Graph* residualGraph, int source, int destination)
 {
 	for (int i = 0; i < residualGraph->getNumberOfVertices(); i++)
 	{
@@ -91,14 +93,14 @@ void PushRelabelService::push(int u, int* e, int* h, vector<int>& queue, bool* i
 			e[i] += f;
 			if (!inQueue[i] && i != source && i != destination)
 			{
-				queue.push_back(i);
+				queueGiven->push(i);
 				inQueue[i] = true;
 			}
 		}
 	}
 	if (e[u] != 0)
 	{
-		queue.push_back(u);
+		queueGiven->push(u);
 		inQueue[u] = true;
 	}
 }
