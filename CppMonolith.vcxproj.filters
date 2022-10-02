@@ -43,6 +43,9 @@
     <Filter Include="Pliki źródłowe\Handlers">
       <UniqueIdentifier>{700e09fc-7bb4-495d-9615-53445cb4f2f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Defines">
+      <UniqueIdentifier>{06bc9381-d20c-4da8-8e9e-735b991ca9c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="KeyboardInterruptHandler.h">
       <Filter>Pliki nagłówkowe\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>Pliki nagłówkowe\Defines</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
