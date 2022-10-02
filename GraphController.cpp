@@ -29,8 +29,18 @@ void GraphController::handleGet(http_request message)
     {
         if (path[0] == to_string_t("graph")) 
         {
+            if (path.size() < 2)
+            {
+                message.reply(status_codes::BadRequest);
+                return;
+            }
             int id = stoi(path[1]);
             auto graph = graphService->getGraph(id);
+            if (graph == nullptr)
+            {
+                message.reply(status_codes::NotFound);
+                return;
+            }
             json::value graphJson;
             graphJson[to_string_t("graph")] = json::value::string(to_string_t(graph->toString()));
             message.reply(status_codes::OK, graphJson);
@@ -38,10 +48,20 @@ void GraphController::handleGet(http_request message)
         }
         else if(path[0] == to_string_t("edmonds-karp"))
         {
+            if (path.size() < 4)
+            {
+                message.reply(status_codes::BadRequest);
+                return;
+            }
             int id = stoi(path[1]);
             int source = stoi(path[2]);
             int destination = stoi(path[3]);
             auto graph = graphService->getGraph(id);
+            if (graph == nullptr)
+            {
+                message.reply(status_codes::NotFound);
+                return;
+            }
             auto result = edmondsKarpService->calculateMaxFlow(graph, source, destination);
             json::value resultJson;
             resultJson[to_string_t("result")] = json::value::number(result);
