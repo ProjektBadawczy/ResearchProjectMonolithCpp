@@ -52,8 +52,8 @@ int KeyboardInterruptHandler::handleKeyboardInterrupt()
         break;
     default:
         cout << endl << "Wait error" << endl;
-        return 0;
     }
+    return 0;
 #endif
 #ifdef linux
     struct sigaction sigIntHandler;

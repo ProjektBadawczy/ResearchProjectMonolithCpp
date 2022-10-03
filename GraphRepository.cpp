@@ -40,5 +40,5 @@ GraphRepository::~GraphRepository()
 
 Graph* GraphRepository::getGraph(int id)
 {
-	return graphs[id]->clone();
+	return (id < 0 || id >= size || graphs[id] == nullptr) ? nullptr : graphs[id]->clone();
 }

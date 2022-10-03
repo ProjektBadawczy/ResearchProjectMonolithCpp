@@ -79,5 +79,6 @@ string Graph::toString()
 		}
 	}
 	result += "]";
+	result += "}";
 	return result;
 }
