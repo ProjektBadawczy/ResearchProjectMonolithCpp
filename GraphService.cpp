@@ -14,3 +14,8 @@ Graph* GraphService::getGraph(int id)
 {
 	return graphRepository->getGraph(id);
 }
+
+DirectedGraph* GraphService::getDirectedGraph(int id)
+{
+	return graphRepository->getDirectedGraph(id);
+}

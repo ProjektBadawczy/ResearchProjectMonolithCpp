@@ -6,6 +6,7 @@ public:
 	GraphService(GraphRepository* graphRepository);
 	~GraphService();
 	Graph* getGraph(int id);
+	DirectedGraph* getDirectedGraph(int id);
 private:
 	GraphRepository* graphRepository;
 };
