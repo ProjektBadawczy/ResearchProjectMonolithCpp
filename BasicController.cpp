@@ -33,3 +33,9 @@ std::vector<utility::string_t> BasicController::requestPath(const http_request& 
 	auto relativePath = uri::decode(message.relative_uri().path());
 	return uri::split_path(relativePath);
 }
+
+std::map<utility::string_t, utility::string_t> BasicController::requestQuery(const http_request& message)
+{
+	auto queries = uri::decode(message.relative_uri().query());
+	return uri::split_query(queries);
+}

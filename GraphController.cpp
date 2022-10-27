@@ -29,14 +29,10 @@ void GraphController::handleGet(http_request message)
     }
     else 
     {
-        if (path[0] == to_string_t("graph")) 
+        if (path[0] == to_string_t("GetGraph"))
         {
-            if (path.size() < 2)
-            {
-                message.reply(status_codes::BadRequest);
-                return;
-            }
-            int id = stoi(path[1]);
+            auto queries = requestQuery(message);
+            int id = stoi(queries[to_string_t("id")]);
             auto graph = graphService->getGraph(id);
             if (graph == nullptr)
             {
@@ -48,14 +44,10 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, graphJson);
             delete graph;
         }
-        else if (path[0] == to_string_t("directed-graph"))
+        else if (path[0] == to_string_t("GetDirectedGraph"))
         {
-            if (path.size() < 2)
-            {
-                message.reply(status_codes::BadRequest);
-                return;
-            }
-            int id = stoi(path[1]);
+            auto queries = requestQuery(message);
+            int id = stoi(queries[to_string_t("id")]);
             auto directedGraph = graphService->getDirectedGraph(id);
             if (directedGraph == nullptr)
             {
@@ -67,16 +59,12 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, graphJson);
             delete directedGraph;
         }
-        else if(path[0] == to_string_t("edmonds-karp"))
+        else if(path[0] == to_string_t("GetEdmondsKarpMaxGraphFlow"))
         {
-            if (path.size() < 4)
-            {
-                message.reply(status_codes::BadRequest);
-                return;
-            }
-            int id = stoi(path[1]);
-            int source = stoi(path[2]);
-            int destination = stoi(path[3]);
+            auto queries = requestQuery(message);
+            int id = stoi(queries[to_string_t("id")]);
+            int source = stoi(queries[to_string_t("source")]);
+            int destination = stoi(queries[to_string_t("destination")]);
             auto graph = graphService->getGraph(id);
             if (graph == nullptr)
             {
@@ -89,27 +77,23 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, resultJson);
             delete graph;
         }
-        else if (path[0] == to_string_t("push-relabel"))
+        else if (path[0] == to_string_t("GetPushRelabelMaxGraphFlow"))
         {
-            if (path.size() < 4)
-            {
-                message.reply(status_codes::BadRequest);
-                return;
-            }
-            int id = stoi(path[1]);
-            int source = stoi(path[2]);
-            int destination = stoi(path[3]);
-            auto directedGraph = graphService->getDirectedGraph(id);
-            if (directedGraph == nullptr)
+            auto queries = requestQuery(message);
+            int id = stoi(queries[to_string_t("id")]);
+            int source = stoi(queries[to_string_t("source")]);
+            int destination = stoi(queries[to_string_t("destination")]);
+            auto graph = graphService->getDirectedGraph(id);
+            if (graph == nullptr)
             {
                 message.reply(status_codes::NotFound);
                 return;
             }
-            auto result = pushRelabelService->calculateMaxFlow(directedGraph, source, destination);
+            auto result = pushRelabelService->calculateMaxFlow(graph, source, destination);
             json::value resultJson;
             resultJson[to_string_t("result")] = json::value::number(result);
             message.reply(status_codes::OK, resultJson);
-            delete directedGraph;
+            delete graph;
         }
         else
         {

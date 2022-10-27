@@ -15,7 +15,7 @@ int main()
 	auto edmondsKarpService = new EdmondsKarpService(bfsService);
 	auto pushRelabelService = new PushRelabelService();
 	GraphController serv(ADDRESS, "8080", graphService, edmondsKarpService, pushRelabelService);
-	serv.setEndpoint("/api");
+	serv.setEndpoint("/Graph");
 	serv.accept().wait();
 
 	return KeyboardInterruptHandler::handleKeyboardInterrupt();
