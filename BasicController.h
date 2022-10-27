@@ -24,6 +24,7 @@ public:
 
 	virtual void initRestOpHandlers() = 0;
 	vector<utility::string_t> requestPath(const http_request& message);
+	std::map<utility::string_t, utility::string_t> requestQuery(const http_request& message);
 protected:
 	http_listener listener;
 private:
