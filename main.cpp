@@ -9,7 +9,7 @@
 
 int main()
 {
-	auto graphRepository = new GraphRepository();
+	auto graphRepository = new GraphRepository(SMALL_SPARSE);
 	auto graphService = new GraphService(graphRepository);
 	auto bfsService = new BFSService();
 	auto edmondsKarpService = new EdmondsKarpService(bfsService);

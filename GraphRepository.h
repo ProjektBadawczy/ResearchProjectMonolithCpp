@@ -1,17 +1,18 @@
 #pragma once
+#include <vector>
+#include <algorithm>
 #include "Graph.h"
 #include "DirectedGraph.h"
 using namespace std;
 class GraphRepository
 {
 public:
-	GraphRepository();
+	GraphRepository(string filepath);
 	~GraphRepository();
 	Graph* getGraph(int id);
 	DirectedGraph* getDirectedGraph(int id);
 private:
-	void initRepository();
-	Graph** graphs;
-	DirectedGraph** directedGraphs;
-	int size;
+	vector<Graph*> graphs;
+	vector<DirectedGraph*> directedGraphs;
+	void readGraphsFromJson(string path);
 };

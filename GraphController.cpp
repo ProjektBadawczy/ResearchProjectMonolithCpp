@@ -40,7 +40,7 @@ void GraphController::handleGet(http_request message)
                 return;
             }
             json::value graphJson;
-            graphJson[to_string_t("graph")] = json::value::string(to_string_t(graph->toString()));
+            graphJson[to_string_t("graph")] = json::value::string(graph->toString());
             message.reply(status_codes::OK, graphJson);
             delete graph;
         }
