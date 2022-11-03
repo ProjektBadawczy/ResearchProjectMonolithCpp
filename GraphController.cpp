@@ -29,7 +29,7 @@ void GraphController::handleGet(http_request message)
     }
     else 
     {
-        if (path[0] == to_string_t("GetGraph"))
+        if (path[0] == to_string_t("graph"))
         {
             auto queries = requestQuery(message);
             int id = stoi(queries[to_string_t("id")]);
@@ -44,7 +44,7 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, graphJson);
             delete graph;
         }
-        else if (path[0] == to_string_t("GetDirectedGraph"))
+        else if (path[0] == to_string_t("directedGraph"))
         {
             auto queries = requestQuery(message);
             int id = stoi(queries[to_string_t("id")]);
@@ -59,7 +59,7 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, graphJson);
             delete directedGraph;
         }
-        else if(path[0] == to_string_t("GetEdmondsKarpMaxGraphFlow"))
+        else if(path[0] == to_string_t("edmondsKarpMaxGraphFlow"))
         {
             auto queries = requestQuery(message);
             int id = stoi(queries[to_string_t("id")]);
@@ -77,7 +77,7 @@ void GraphController::handleGet(http_request message)
             message.reply(status_codes::OK, resultJson);
             delete graph;
         }
-        else if (path[0] == to_string_t("GetPushRelabelMaxGraphFlow"))
+        else if (path[0] == to_string_t("pushRelabelMaxGraphFlow"))
         {
             auto queries = requestQuery(message);
             int id = stoi(queries[to_string_t("id")]);
