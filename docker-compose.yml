@@ -5,4 +5,4 @@ services:
       - INSIDE_DOCKER=1
     build: ./
     ports:
-      - 8145:8080
+      - 8001:8001
