@@ -10,6 +10,8 @@ COPY ./ /src/CppMonolith
 
 RUN mkdir /src/build
 
+COPY ./graphs/ /src/build/graphs
+
 WORKDIR /src/build
 
 RUN cmake ../CppMonolith

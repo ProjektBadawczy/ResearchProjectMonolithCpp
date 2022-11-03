@@ -11,12 +11,12 @@ DirectedGraph::Vertex::Vertex(int i, int w)
 
 DirectedGraph::Vertex::Vertex(utility::string_t text)
 {
-	string_t iName = U("i: ");
-	string_t wName = U("w: ");
+	string_t iName = U("\"i\": ");
+	string_t wName = U("\"w\": ");
 	size_t pos = 0;
 	size_t nextStopPos = 0;
 	pos = text.find(iName, pos);
-	nextStopPos = text.find(U(","), pos);
+	nextStopPos = text.find(U(", "), pos);
 	this->i = stoi(text.substr(pos + iName.length(), nextStopPos - (pos + iName.length())));
 	pos = text.find(wName, pos);
 	nextStopPos = text.find(U("}"), pos);
@@ -30,10 +30,10 @@ string_t DirectedGraph::Vertex::toString()
 {
 	string_t ret = U("");
 	ret += U("{");
-	ret += U("i: ");
+	ret += U("\"i\": ");
 	ret += to_string_t(to_string(this->i));
 	ret += U(",");
-	ret += U("w: ");
+	ret += U("\"w\": ");
 	ret += to_string_t(to_string(this->w));
 	ret += U("}");
 	return ret;
@@ -53,17 +53,17 @@ DirectedGraph::DirectedGraph(int numberOfVertices, int id)
 
 DirectedGraph::DirectedGraph(string_t text)
 {
-	string_t idName = U("id: ");
-	string_t numberOfVerticesName = U("numberOfVertices: ");
-	string_t adjacencyListName = U("adjacencyList: ");
+	string_t idName = U("\"id\": ");
+	string_t numberOfVerticesName = U("\"numberOfVertices\": ");
+	string_t adjacencyListName = U("\"adjacencyList\": ");
 	size_t pos = 0;
 	size_t nextStopPos = 0;
 	pos = text.find(idName, pos);
-	nextStopPos = text.find(U(","), pos);
+	nextStopPos = text.find(U(", "), pos);
 	this->id = stoi(text.substr(pos + idName.length(),
 		nextStopPos - (pos + idName.length())));
 	pos = text.find(numberOfVerticesName, pos);
-	nextStopPos = text.find(U(","), pos);
+	nextStopPos = text.find(U(", "), pos);
 	this->numberOfVertices = stoi(text.substr(pos + numberOfVerticesName.length(),
 		nextStopPos - (pos + numberOfVerticesName.length())));
 	this->adjacencyList = new list<Vertex*>[numberOfVertices]();
@@ -91,7 +91,7 @@ DirectedGraph::DirectedGraph(string_t text)
 			pos = nextStopPos + 1;
 		}
 		// move after comma and opening bracket
-		pos += 2;
+		pos += 3;
 	}
 }
 
@@ -159,13 +159,13 @@ string_t DirectedGraph::toString()
 {
 	string_t ret = U("");
 	ret += U("{");
-	ret += U("id: ");
+	ret += U("\"id\": ");
 	ret += to_string_t(to_string(this->id));
-	ret += U(",");
-	ret += U("numberOfVertices: ");
+	ret += U(", ");
+	ret += U("\"numberOfVertices\": ");
 	ret += to_string_t(to_string(this->numberOfVertices));
-	ret += U(",");
-	ret += U("adjacencyList: ");
+	ret += U(", ");
+	ret += U("\"adjacencyList\": ");
 	ret += U("[");
 	for (int i = 0; i < this->numberOfVertices; i++)
 	{
@@ -175,15 +175,15 @@ string_t DirectedGraph::toString()
 			for (auto v : this->adjacencyList[i])
 			{
 				ret += v->toString();
-				ret += U(",");
+				ret += U(", ");
 			}
 			// switch last comma to closing bracket
 			ret[ret.length() - 1] = U(']');
-			ret += U(",");
+			ret += U(", ");
 		}
 		else
 		{
-			ret += U("[],");
+			ret += U("[], ");
 		}
 	}
 	// switch last comma to closing bracket

@@ -1,72 +1,61 @@
 #include "GraphRepository.h"
 
-GraphRepository::GraphRepository()
+GraphRepository::GraphRepository(string filepath)
 {
-	// set initial size of array to 100
-	// expand when necessary
-	size = 100;
-	graphs = new Graph * [size]();
-	directedGraphs = new DirectedGraph * [size]();
-	initRepository();
+	readGraphsFromJson(filepath);
 }
 
 GraphRepository::~GraphRepository()
 {
-	for (int i = 0; i < size; i++)
+	for (auto graph : graphs)
 	{
-		if (graphs[i] != nullptr)
-		{
-			delete graphs[i];
-		}
+		delete graph;
 	}
-	for (int i = 0; i < size; i++)
+	graphs.clear();
+	for (auto directedGraph : directedGraphs)
 	{
-		if (directedGraphs[i] != nullptr)
-		{
-			delete directedGraphs[i];
-		}
+		delete directedGraph;
 	}
-	delete[] graphs;
-	delete[] directedGraphs;
-}
-
-void GraphRepository::initRepository()
-{
-	int** matrix = new int* [4];
-	for (int i = 0; i < 4; i++)
-	{
-		matrix[i] = new int[4];
-	}
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			matrix[i][j] = i == j ? 0 : j + 1;
-		}
-	}
-	auto graph = new Graph(1, 4, matrix);
-	graphs[graph->getId()] = graph;
-
-	auto directedGraph = new DirectedGraph(6, 1);
-	directedGraph->addEdge(0, 1, 16);
-	directedGraph->addEdge(0, 2, 13);
-	directedGraph->addEdge(1, 2, 10);
-	directedGraph->addEdge(2, 1, 4);
-	directedGraph->addEdge(1, 3, 12);
-	directedGraph->addEdge(3, 2, 9);
-	directedGraph->addEdge(2, 4, 14);
-	directedGraph->addEdge(4, 5, 4);
-	directedGraph->addEdge(4, 3, 7);
-	directedGraph->addEdge(3, 5, 20);
-	directedGraphs[directedGraph->getId()] = directedGraph;
+	directedGraphs.clear();
 }
 
 Graph* GraphRepository::getGraph(int id)
 {
-	return (id < 0 || id >= size || graphs[id] == nullptr) ? nullptr : graphs[id]->clone();
+	return (id > 0 && id <= graphs.size()) ? graphs[id - 1]->clone() : nullptr;
 }
 
 DirectedGraph* GraphRepository::getDirectedGraph(int id)
 {
-	return (id < 0 || id >= size || directedGraphs[id] == nullptr) ? nullptr : directedGraphs[id]->clone();
+	return (id > 0 && id <= directedGraphs.size()) ? directedGraphs[id - 1]->clone() : nullptr;
+}
+
+void GraphRepository::readGraphsFromJson(string path)
+{
+	ifstream t(path);
+	stringstream buffer;
+	buffer << t.rdbuf();
+	string graphName = "\"graph\": ";
+	string directedGraphName = "\"directedGraph\": ";
+	size_t pos = 0;
+	size_t nextStopPos = 0;
+	Graph* graph;
+	DirectedGraph* directedGraph;
+
+	// read graphs from json
+	// graphs should be formatted as [{graph, directedGraph}, {graph, directedGraph}, ...]
+	while (true)
+	{
+		pos = buffer.str().find(graphName, pos);
+		if (pos == string::npos) break;
+		// graphs always end with "},"
+		nextStopPos = buffer.str().find("},", pos);
+		graph = new Graph(utility::conversions::to_string_t(buffer.str().substr(pos, nextStopPos - pos + 1)));
+		graphs.push_back(graph);
+		pos = buffer.str().find(directedGraphName, nextStopPos);
+		if (pos == string::npos) break;
+		// directed graphs always end with "}}"
+		nextStopPos = buffer.str().find("}}", pos);
+		directedGraph = new DirectedGraph(utility::conversions::to_string_t(buffer.str().substr(pos, nextStopPos - pos + 1)));
+		directedGraphs.push_back(directedGraph);
+	}
 }
