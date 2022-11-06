@@ -21,12 +21,22 @@ GraphRepository::~GraphRepository()
 
 Graph* GraphRepository::getGraph(int id)
 {
-	return (id > 0 && id <= graphs.size()) ? graphs[id - 1]->clone() : nullptr;
+	auto predicate = [=](Graph* graph)
+	{
+		return graph->getId() == id;
+	};
+	auto result = std::find_if(graphs.begin(), graphs.end(), predicate);
+	return result != graphs.end() ? (*result)->clone() : nullptr;
 }
 
 DirectedGraph* GraphRepository::getDirectedGraph(int id)
 {
-	return (id > 0 && id <= directedGraphs.size()) ? directedGraphs[id - 1]->clone() : nullptr;
+	auto predicate = [=](DirectedGraph* directedGraph)
+	{
+		return directedGraph->getId() == id;
+	};
+	auto result = std::find_if(directedGraphs.begin(), directedGraphs.end(), predicate);
+	return result != directedGraphs.end() ? (*result)->clone() : nullptr;
 }
 
 void GraphRepository::readGraphsFromJson(string path)
